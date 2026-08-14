@@ -63,3 +63,55 @@ This prevents timestamps from changing between workbook sessions.
 Fields that do not exist in the original source dataset are clearly treated as simulated or derived data.
 
 The simulated timestamps are intended to support demonstration of time-series and near-real-time dashboard functionality in Tableau. They should not be interpreted as actual historical ticket creation timestamps from the source system.
+
+## Step 5: Create Ticket Category
+
+A primary ticket category was derived from the existing `Tags` field.
+
+Categories include:
+
+- Security
+- Network
+- Outage
+- Performance
+- Software/Bug
+- Hardware
+- Account/Access
+- Billing
+- General Support
+
+The purpose of this transformation was to convert the multi-value Tags field into a single primary category suitable for grouping and filtering in Tableau.
+
+## Step 6: Create Ticket Status
+
+The original dataset did not contain ticket status information.
+
+A simulated `Status` field was created with three operational states:
+
+- Resolved
+- In Progress
+- Open
+
+Excel's `RAND()` function was used to generate the status distribution.
+
+After generation, the formulas were converted to static values using Paste Special → Values to prevent the statuses from changing during recalculation.
+
+This field is simulated and does not represent actual ticket status information from the original source dataset.
+
+## Step 7: Assign Support Teams
+
+An `Assigned_Team` field was derived from the ticket category using rule-based routing logic.
+
+Examples:
+
+- Security → Security Operations
+- Network / Outage → Network Operations
+- Software/Bug / Performance → Application Support
+- Hardware → Desktop Support
+- Account/Access → Identity & Access
+- Billing → Business Systems
+- General Support → Service Desk
+
+Unlike the simulated Status field, Assigned_Team is a derived field based on predefined business rules.
+
+This field enables analysis of ticket volume and workload across IT support teams in Tableau.
